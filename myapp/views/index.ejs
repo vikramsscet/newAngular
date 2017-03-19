@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/angular.v1.6.1.js"></script>
+    <script src="javascripts/controllers/mainController.js"></script>
+    <script src="javascripts/Utils/generalUtil.js"></script>
+    <link rel="stylesheet" href="stylesheets/w3.css">
+    <title></title>
+</head>
+<body>
+
+<header class="w3-container w3-teal">
+    <h1>Movie Database...</h1>
+</header>
+
+<section class="w3-container" ng-app="myApp" ng-controller="myCtrl">
+
+    <input class="w3-input" type="text" placeholder="Enter Movie Title and Press Enter"
+           ng-model="movieName" ng-keyup="$event.keyCode == 13 ? movieSearch() : null">
+
+    <div class="w3-row-padding w3-theme">
+        <div class="w3-third w3-section" ng-repeat="movie in movies">
+            <div class="w3-card-4">
+                <img src="{{movie.Poster}}" style="width:100%">
+                <div class="w3-container w3-white">
+                    <h4>{{movie.Title}}</h4>
+                    <p>Year - {{movie.Year}}, Type - {{movie.Type}}, ID - {{movie.imdbID}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-center pagination">
+        <div class="w3-bar">
+            <a pageNum="{{previousPage}}" ng-click="setPage($event)" class="w3-button">&laquo;</a>
+            <a pageNum="{{pageNumber}}" ng-click="setPage($event)" ng-repeat="pageNumber in pageArray" class="w3-button current">{{pageNumber}}</a>
+            <a pageNum="{{nextPage}}"ng-click="setPage($event)"  class="w3-button">&raquo;</a>
+        </div>
+    </div>
+
+</section>
+
+<footer class="w3-container w3-teal">
+    <h5>Footer</h5>
+    <p>Footer information goes here</p>
+</footer>
+
+</body>
+</html>
